@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:http="http://www.mulesoft.org/schema/mule/http" xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd">
+	<http:listener-config name="HTTP_Listener_config" doc:name="HTTP Listener config" doc:id="122ca928-e351-4ca7-b549-e91c317b5285" >
+		<http:listener-connection host="0.0.0.0" port="8081" />
+	</http:listener-config>
+	<flow name="munitdemoFlow" doc:id="98b8025d-121e-432c-ad9a-cbb367a29491" >
+		<http:listener doc:name="Listener" doc:id="fecdfe33-f6a7-4e07-ba5d-2b9a71fe6a8a" config-ref="HTTP_Listener_config" path="/test"/>
+		<set-payload value="#['Welcome! ' ++ payload.name ++'. Your id is ' ++ payload.id]" doc:name="Set Payload" doc:id="0a701d0d-c1af-462a-b42b-d749e656dab8" />
+	</flow>
+</mule>

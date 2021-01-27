@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:munit="http://www.mulesoft.org/schema/mule/munit" xmlns:munit-tools="http://www.mulesoft.org/schema/mule/munit-tools"
+	xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xsi:schemaLocation="
+		http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+		http://www.mulesoft.org/schema/mule/munit http://www.mulesoft.org/schema/mule/munit/current/mule-munit.xsd
+		http://www.mulesoft.org/schema/mule/munit-tools  http://www.mulesoft.org/schema/mule/munit-tools/current/mule-munit-tools.xsd">
+	<munit:config name="munitdemo-test-suite.xml" />
+	<munit:test name="munitdemo-test-suite-munitdemoFlowTest" doc:id="b53d4c13-4a67-49f1-9f4a-5eb2b8637395" description="Test">
+		<munit:execution >
+			<munit:set-event doc:name="Set Event" doc:id="fcee04b5-df64-45e2-8467-ffd7f3a56ec3" >
+				<munit:payload value='{
+	"id": 100,
+	"name": "Bruce Wayne"
+}' mediaType="application/json" />
+			</munit:set-event>
+			<flow-ref doc:name="Flow-ref to munitdemoFlow" doc:id="651b68c8-a289-480e-8941-e9d62d8fd176" name="munitdemoFlow"/>
+		</munit:execution>
+		<munit:validation >
+			<munit-tools:assert-equals doc:name="Assert equals" doc:id="128fc16b-0908-47dc-9444-994ac6b0dcab" actual="#[payload]" expected="#['Welcome! Bruce Wayne. Your id is 100']" message="Payload didnt match"/>
+		</munit:validation>
+	</munit:test>
+
+
+</mule>
